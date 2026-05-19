@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f1e8;
+  color: #222;
+}
+
+header {
+  background-color: #123524;
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+nav {
+  background-color: #d6b35a;
+  text-align: center;
+  padding: 15px;
+}
+
+nav button {
+  background-color: #123524;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+nav button:hover {
+  background-color: #1f5c3b;
+}
+
+main {
+  width: 90%;
+  margin: 25px auto;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+h2 {
+  color: #123524;
+  border-bottom: 3px solid #d6b35a;
+  padding-bottom: 8px;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-left: 8px solid #d6b35a;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px gray;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px gray;
+}
+
+th {
+  background-color: #123524;
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+footer {
+  text-align: center;
+  background-color: #123524;
+  color: white;
+  padding: 15px;
+  margin-top: 40px;
+}

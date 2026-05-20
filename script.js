@@ -3,7 +3,12 @@ const players = [
   { name: "Jack Freeman", username: "trdij", flag: "🇺🇸" },
   { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
   { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
-  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" }
+  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
+  { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇺🇸" },
+  { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
+  { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
+  { name: "Nathan Gibboney", username: "nateguy321", flag: "🇺🇸" },
+  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" }
 ];
 
 const tournamentData = [
@@ -11,10 +16,13 @@ const tournamentData = [
   { name: "Jack Freeman", first: 1, second: 2, third: 1 },
   { name: "Seamus Delaplane", first: 0, second: 1, third: 3 },
   { name: "Clay Hill", first: 1, second: 0, third: 2 },
-  { name: "Daehee Cho", first: 0, second: 2, third: 1 }
+  { name: "Daehee Cho", first: 0, second: 2, third: 1 },
+  { name: "Ryan Seeley", first: 1, second: 1, third: 0 },
+  { name: "Jonah Connor", first: 0, second: 1, third: 2 },
+  { name: "Lev Bryans", first: 0, second: 0, third: 3 },
+  { name: "Nathan Gibboney", first: 1, second: 0, third: 1 },
+  { name: "Harrison Rupp", first: 0, second: 2, third: 0 }
 ];
-
-const adminPassword = "westtownchess";
 
 function showTab(tabId) {
   document.querySelectorAll(".tab").forEach(tab => {
@@ -153,55 +161,5 @@ function displayTournamentRankings() {
   });
 }
 
-function loadBracket() {
-  const savedBracket = localStorage.getItem("westtownBracket");
-
-  const defaultBracket =
-`Round 1:
-Logan Amaya vs Jack Freeman
-Seamus Delaplane vs Clay Hill
-Daehee Cho gets a bye
-
-Semifinals:
-Winner of Match 1 vs Daehee Cho
-Winner of Match 2 vs TBD
-
-Finals:
-Winner of Semifinal 1 vs Winner of Semifinal 2
-
-Champion:
-TBD`;
-
-  const bracketText = savedBracket || defaultBracket;
-
-  document.getElementById("bracketDisplay").textContent = bracketText;
-  document.getElementById("bracketInput").value = bracketText;
-}
-
-function login() {
-  const password = document.getElementById("passwordInput").value;
-
-  if (password === adminPassword) {
-    document.getElementById("bracketControls").classList.remove("hidden");
-    document.getElementById("loginBox").classList.add("hidden");
-  } else {
-    alert("Incorrect password.");
-  }
-}
-
-function logout() {
-  document.getElementById("bracketControls").classList.add("hidden");
-  document.getElementById("loginBox").classList.remove("hidden");
-  document.getElementById("passwordInput").value = "";
-}
-
-function saveBracket() {
-  const updatedBracket = document.getElementById("bracketInput").value;
-  localStorage.setItem("westtownBracket", updatedBracket);
-  document.getElementById("bracketDisplay").textContent = updatedBracket;
-  alert("Bracket saved.");
-}
-
 getChessData();
 displayTournamentRankings();
-loadBracket();

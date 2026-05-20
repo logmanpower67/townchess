@@ -10,7 +10,7 @@
 <header>
   <div class="overlay">
     <h1>Westtown Chess Club</h1>
-    <p>Live Chess.com rankings, records, flags, and tournament brackets</p>
+    <p>Live Chess.com rankings, records, flags, and tournament standings</p>
   </div>
 </header>
 
@@ -19,7 +19,6 @@
   <button onclick="showTab('elo')">ELO Rankings</button>
   <button onclick="showTab('record')">Record Rankings</button>
   <button onclick="showTab('tournaments')">Tournament Points</button>
-  <button onclick="showTab('bracket')">Tournament Bracket</button>
 </nav>
 
 <main>
@@ -28,8 +27,15 @@
     <div class="card">
       <p>
         This site helps run the Westtown Chess Club by tracking Chess.com ratings,
-        records, win rates, country flags, tournament points, and live club brackets.
+        records, win rates, country flags, and in-person tournament points.
       </p>
+    </div>
+
+    <div class="card">
+      <h3>Tournament Point System</h3>
+      <p>1st place = 5 points</p>
+      <p>2nd place = 3 points</p>
+      <p>3rd place = 1 point</p>
     </div>
   </section>
 
@@ -84,30 +90,6 @@
       </thead>
       <tbody id="tournamentTable"></tbody>
     </table>
-  </section>
-
-  <section id="bracket" class="tab">
-    <h2>Tournament Bracket</h2>
-
-    <div id="loginBox" class="card">
-      <h3>Admin Login</h3>
-      <p>Only the club admin can edit the bracket.</p>
-      <input id="passwordInput" type="password" placeholder="Enter admin password">
-      <button onclick="login()">Login</button>
-    </div>
-
-    <div id="bracketControls" class="card hidden">
-      <h3>Edit Bracket</h3>
-      <textarea id="bracketInput"></textarea>
-      <br>
-      <button onclick="saveBracket()">Save Bracket</button>
-      <button onclick="logout()">Logout</button>
-    </div>
-
-    <div class="bracket-card">
-      <h3>Current Bracket</h3>
-      <pre id="bracketDisplay"></pre>
-    </div>
   </section>
 </main>
 

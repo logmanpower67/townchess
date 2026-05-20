@@ -1,45 +1,52 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f1e8;
-  color: #222;
+  font-family: Georgia, serif;
+  background-color: #ffffff;
+  color: #3b2414;
 }
 
 header {
-  background-color: #123524;
+  background-image: url("https://images.unsplash.com/photo-1529699211952-734e80c4d42b");
+  background-size: cover;
+  background-position: center;
   color: white;
   text-align: center;
-  padding: 30px;
+}
+
+.overlay {
+  background-color: rgba(59, 36, 20, 0.75);
+  padding: 60px 20px;
 }
 
 header h1 {
   margin: 0;
-  font-size: 42px;
+  font-size: 48px;
 }
 
 header p {
   font-size: 18px;
+  color: #c4d8e2;
 }
 
 nav {
-  background-color: #d6b35a;
+  background-color: #3b2414;
   text-align: center;
   padding: 15px;
 }
 
 nav button {
-  background-color: #123524;
-  color: white;
-  border: none;
+  background-color: #c4d8e2;
+  color: #3b2414;
+  border: 2px solid white;
   padding: 12px 18px;
   margin: 5px;
   cursor: pointer;
-  border-radius: 8px;
-  font-size: 15px;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 nav button:hover {
-  background-color: #1f5c3b;
+  background-color: white;
 }
 
 main {
@@ -56,17 +63,18 @@ main {
 }
 
 h2 {
-  color: #123524;
-  border-bottom: 3px solid #d6b35a;
+  color: #3b2414;
+  border-bottom: 4px solid #c4d8e2;
   padding-bottom: 8px;
 }
 
-.card {
+.card,
+.bracket-card {
   background-color: white;
   padding: 20px;
-  border-left: 8px solid #d6b35a;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px gray;
+  border-left: 8px solid #c4d8e2;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px gray;
   margin-top: 20px;
 }
 
@@ -74,11 +82,13 @@ table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
-  box-shadow: 0 2px 8px gray;
+  box-shadow: 0 3px 10px gray;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th {
-  background-color: #123524;
+  background-color: #3b2414;
   color: white;
   padding: 12px;
 }
@@ -90,12 +100,37 @@ td {
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: #eaf3f7;
+}
+
+input,
+textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #c4d8e2;
+  border-radius: 8px;
+}
+
+textarea {
+  height: 180px;
+}
+
+pre {
+  white-space: pre-wrap;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.hidden {
+  display: none;
 }
 
 footer {
   text-align: center;
-  background-color: #123524;
+  background-color: #3b2414;
   color: white;
   padding: 15px;
   margin-top: 40px;

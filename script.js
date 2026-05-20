@@ -1,9 +1,9 @@
 const players = [
-  { name: "Logan Amaya", username: "logmanpower" },
-  { name: "Jack Freeman", username: "trdij" },
-  { name: "Seamus Delaplane", username: "mus_del" },
-  { name: "Clay Hill", username: "C1ay_Bird" },
-  { name: "Daehee Cho", username: "cutydaeheecho" }
+  { name: "Logan Amaya", username: "logmanpower", flag: "🇺🇸" },
+  { name: "Jack Freeman", username: "trdij", flag: "🇺🇸" },
+  { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
+  { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
+  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" }
 ];
 
 const tournamentData = [
@@ -14,10 +14,10 @@ const tournamentData = [
   { name: "Daehee Cho", first: 0, second: 2, third: 1 }
 ];
 
-function showTab(tabId) {
-  const tabs = document.querySelectorAll(".tab");
+const adminPassword = "westtownchess";
 
-  tabs.forEach(tab => {
+function showTab(tabId) {
+  document.querySelectorAll(".tab").forEach(tab => {
     tab.classList.remove("active");
   });
 
@@ -50,6 +50,7 @@ async function getChessData() {
       playerData.push({
         name: player.name,
         username: player.username,
+        flag: player.flag,
         rapid,
         blitz,
         bullet,
@@ -63,6 +64,7 @@ async function getChessData() {
       playerData.push({
         name: player.name,
         username: player.username,
+        flag: player.flag,
         rapid: "Error",
         blitz: "Error",
         bullet: "Error",
@@ -93,6 +95,7 @@ function displayEloRankings(data) {
     table.innerHTML += `
       <tr>
         <td>${index + 1}</td>
+        <td>${player.flag}</td>
         <td>${player.name}</td>
         <td>${player.username}</td>
         <td>${player.rapid}</td>
@@ -114,6 +117,7 @@ function displayRecordRankings(data) {
     table.innerHTML += `
       <tr>
         <td>${index + 1}</td>
+        <td>${player.flag}</td>
         <td>${player.name}</td>
         <td>${player.wins}</td>
         <td>${player.losses}</td>
@@ -149,5 +153,55 @@ function displayTournamentRankings() {
   });
 }
 
+function loadBracket() {
+  const savedBracket = localStorage.getItem("westtownBracket");
+
+  const defaultBracket =
+`Round 1:
+Logan Amaya vs Jack Freeman
+Seamus Delaplane vs Clay Hill
+Daehee Cho gets a bye
+
+Semifinals:
+Winner of Match 1 vs Daehee Cho
+Winner of Match 2 vs TBD
+
+Finals:
+Winner of Semifinal 1 vs Winner of Semifinal 2
+
+Champion:
+TBD`;
+
+  const bracketText = savedBracket || defaultBracket;
+
+  document.getElementById("bracketDisplay").textContent = bracketText;
+  document.getElementById("bracketInput").value = bracketText;
+}
+
+function login() {
+  const password = document.getElementById("passwordInput").value;
+
+  if (password === adminPassword) {
+    document.getElementById("bracketControls").classList.remove("hidden");
+    document.getElementById("loginBox").classList.add("hidden");
+  } else {
+    alert("Incorrect password.");
+  }
+}
+
+function logout() {
+  document.getElementById("bracketControls").classList.add("hidden");
+  document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("passwordInput").value = "";
+}
+
+function saveBracket() {
+  const updatedBracket = document.getElementById("bracketInput").value;
+  localStorage.setItem("westtownBracket", updatedBracket);
+  document.getElementById("bracketDisplay").textContent = updatedBracket;
+  alert("Bracket saved.");
+}
+
 getChessData();
 displayTournamentRankings();
+loadBracket();

@@ -12,16 +12,16 @@ const players = [
 ];
 
 const tournamentData = [
-  { name: "Logan Amaya", first: 2, second: 1, third: 0 },
-  { name: "Jack Freeman", first: 1, second: 2, third: 1 },
-  { name: "Seamus Delaplane", first: 0, second: 1, third: 3 },
-  { name: "Clay Hill", first: 1, second: 0, third: 2 },
-  { name: "Daehee Cho", first: 0, second: 2, third: 1 },
-  { name: "Ryan Seeley", first: 1, second: 1, third: 0 },
-  { name: "Jonah Connor", first: 0, second: 1, third: 2 },
-  { name: "Lev Bryans", first: 0, second: 0, third: 3 },
-  { name: "Nathan Gibboney", first: 1, second: 0, third: 1 },
-  { name: "Harrison Rupp", first: 0, second: 2, third: 0 }
+  { name: "Logan Amaya", first: 0, second: 0, third: 0 },
+  { name: "Jack Freeman", first: 0, second: 0, third: 0 },
+  { name: "Seamus Delaplane", first: 0, second: 0, third: 0 },
+  { name: "Clay Hill", first: 0, second: 0, third: 0 },
+  { name: "Daehee Cho", first: 0, second: 0, third: 0 },
+  { name: "Ryan Seeley", first: 0, second: 0, third: 0 },
+  { name: "Jonah Connor", first: 0, second: 0, third: 0 },
+  { name: "Lev Bryans", first: 0, second: 0, third: 0 },
+  { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
+  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }
 ];
 
 function showTab(tabId) {

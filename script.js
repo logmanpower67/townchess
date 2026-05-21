@@ -4,7 +4,7 @@ const players = [
   { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
   { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
   { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
-  { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇺🇸" },
+  { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇷🇴" },
   { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
   { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
   { name: "Nathan Gibboney", username: "nateguy321", flag: "🇺🇸" },

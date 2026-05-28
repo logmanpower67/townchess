@@ -22,7 +22,7 @@ const tournamentData = [
   { name: "Jonah Connor", first: 0, second: 0, third: 0 },
   { name: "Lev Bryans", first: 0, second: 0, third: 0 },
   { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
-  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }.\,
+  { name: "Harrison Rupp", first: 0, second: 0, third: 0 },
   { name: "Ethan Streubel", first: 0, second: 0, third: 0 }
   
 ];

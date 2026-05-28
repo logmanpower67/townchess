@@ -8,8 +8,7 @@ const players = [
   { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
   { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
   { name: "Nathan Gibboney", username: "nateguy321", flag: "🇺🇸" },
-  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" },
-  { name: "Ethan Streubel", username: "Ethantor-X", flag: "🇺🇸" }
+  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" }
 ];
 
 const tournamentData = [
@@ -22,8 +21,7 @@ const tournamentData = [
   { name: "Jonah Connor", first: 0, second: 0, third: 0 },
   { name: "Lev Bryans", first: 0, second: 0, third: 0 },
   { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
-  { name: "Harrison Rupp", first: 0, second: 0, third: 0 },
-  { name: "Ethan Streubel", first: 0, second: 0, third: 0 }
+  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }
   
 ];
 

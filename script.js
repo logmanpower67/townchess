@@ -3,12 +3,13 @@ const players = [
   { name: "Jack Freeman", username: "trdij", flag: "🇺🇸" },
   { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
   { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
-  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
+  { name: "GOAT_Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
   { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇷🇴" },
   { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
   { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
   { name: "Nathan Gibboney", username: "nateguy321", flag: "🇺🇸" },
-  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" }
+  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" },
+  { name: "Ethan Streubel", username: "Ethantor-X", flag: "🇺🇸" }
 ];
 
 const tournamentData = [
@@ -21,7 +22,9 @@ const tournamentData = [
   { name: "Jonah Connor", first: 0, second: 0, third: 0 },
   { name: "Lev Bryans", first: 0, second: 0, third: 0 },
   { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
-  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }
+  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }.\,
+  { name: "Ethan Streubel", first: 0, second: 0, third: 0 }
+  
 ];
 
 function showTab(tabId) {

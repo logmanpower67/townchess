@@ -3,7 +3,7 @@ const players = [
   { name: "Jack Freeman", username: "trdij", flag: "🇺🇸" },
   { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
   { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
-  { name: "GOAT_Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
+  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
   { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇷🇴" },
   { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
   { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
@@ -22,7 +22,6 @@ const tournamentData = [
   { name: "Lev Bryans", first: 0, second: 0, third: 0 },
   { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
   { name: "Harrison Rupp", first: 0, second: 0, third: 0 }
-  
 ];
 
 function showTab(tabId) {

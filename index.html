@@ -2,91 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Westtown Chess Club</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="/wtchess/style.css?v=30">
 </head>
+
 <body>
-<header>
-  <div class="overlay">
-    <h1>Westtown Chess Club</h1>
-    <p>Live Chess.com rankings, records, flags, and tournament standings for Westtown students</p>
-  </div>
-</header>
-<nav>
-  <a onclick="showTab('elo')">Load ELO Rankings</a>
-  <a onclick="showTab('record')">Load record Rankings</a>
-  <a onclick="showTab('tournaments')">Load tournament Points</a>
-</nav>
-<main>
-  <section id="home" class="tab active">
-    <h2>Welcome</h2>
-    <div class="card">
-      <p>
-        This site helps run the Westtown Chess Club by tracking Chess.com ratings,
-        records, win rates, country flags, and in-person tournament points.
-      </p>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>♟ Westtown Chess Club</h1>
+      <p>Live Chess.com rapid rankings and in-person tournament standings</p>
     </div>
-    <div class="card">
-      <h3>Tournament Point System</h3>
-      <p>1st place = 5 points</p>
-      <p>2nd place = 3 points</p>
-      <p>3rd place = 1 point</p>
-    </div>
-  </section>
-  <section id="elo" class="tab">
-    <h2>Chess.com ELO Rankings</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Flag</th>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Rapid</th>
-          <th>Blitz</th>
-          <th>Bullet</th>
-        </tr>
-      </thead>
-      <tbody id="eloTable"></tbody>
-    </table>
-  </section>
-  <section id="record" class="tab">
-    <h2>Record Rankings</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Flag</th>
-          <th>Name</th>
-          <th>Wins</th>
-          <th>Losses</th>
-          <th>Draws</th>
-          <th>Win Rate</th>
-        </tr>
-      </thead>
-      <tbody id="recordTable"></tbody>
-    </table>
-  </section>
-  <section id="tournaments" class="tab">
-    <h2>In-Person Tournament Points</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>1st Place</th>
-          <th>2nd Place</th>
-          <th>3rd Place</th>
-          <th>Total Points</th>
-        </tr>
-      </thead>
-      <tbody id="tournamentTable"></tbody>
-    </table>
-  </section>
-</main>
-<footer>
-  <p>Westtown Chess Club © 2026</p>
-</footer>
-<script src="script.js"></script>
+  </header>
+
+  <nav>
+    <button class="tab-button active" onclick="showTab('home', this)">Dashboard</button>
+    <button class="tab-button" onclick="showTab('elo', this)">ELO Rankings</button>
+    <button class="tab-button" onclick="showTab('record', this)">Win Rates</button>
+    <button class="tab-button" onclick="showTab('tournament', this)">Tournaments</button>
+  </nav>
+
+  <main>
+
+    <section id="home" class="tab-content active">
+      <h2>Club Dashboard</h2>
+      <p id="loadingMessage">Loading live Chess.com stats...</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>🏆 Highest Rapid ELO</h3>
+          <p id="topElo">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>🔥 Best Win Rate</h3>
+          <p id="topRecord">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>👑 Tournament Leader</h3>
+          <p id="topTournament">Loading...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="elo" class="tab-content">
+      <h2>Chess.com Rapid ELO Rankings</h2>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Chess.com Username</th>
+              <th>Rapid ELO</th>
+            </tr>
+          </thead>
+          <tbody id="eloTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="record" class="tab-content">
+      <h2>Win Rate Rankings</h2>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Draws</th>
+              <th>Win Rate</th>
+            </tr>
+          </thead>
+          <tbody id="recordTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tournament" class="tab-content">
+      <h2>In-Person Tournament Rankings</h2>
+      <p>Scoring: 1st place = 5 points, 2nd place = 3 points, 3rd place = 1 point.</p>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>1st Place</th>
+              <th>2nd Place</th>
+              <th>3rd Place</th>
+              <th>Total Points</th>
+            </tr>
+          </thead>
+          <tbody id="tournamentTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Westtown Chess Club © 2026</p>
+  </footer>
+
+  <script src="/wtchess/script.js?v=30"></script>
 </body>
 </html>

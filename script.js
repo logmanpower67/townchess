@@ -1,165 +1,173 @@
 const players = [
-  { name: "Logan Amaya", username: "logmanpower", flag: "🇺🇸" },
-  { name: "Jack Freeman", username: "trdij", flag: "🇺🇸" },
-  { name: "Seamus Delaplane", username: "mus_del", flag: "🇺🇸" },
-  { name: "Clay Hill", username: "C1ay_Bird", flag: "🇺🇸" },
-  { name: "Daehee Cho", username: "cutydaeheecho", flag: "🇰🇷" },
-  { name: "Ryan Seeley", username: "I_Love_Amaya", flag: "🇷🇴" },
-  { name: "Jonah Connor", username: "MostMediocre", flag: "🇺🇸" },
-  { name: "Lev Bryans", username: "Lev_Bryanss", flag: "🇺🇸" },
-  { name: "Nathan Gibboney", username: "nateguy321", flag: "🇺🇸" },
-  { name: "Harrison Rupp", username: "HarrisonRupp", flag: "🇺🇸" }
+  { name: "Logan Amaya", chessUsername: "logmanpower", first: 0, second: 0, third: 0 },
+  { name: "Ryan Seeley", chessUsername: "I_Love_Amaya", first: 0, second: 0, third: 0 },
+  { name: "Jonah Connor", chessUsername: "MostMediocre", first: 0, second: 0, third: 0 },
+  { name: "Lev Bryans", chessUsername: "Lev_Bryanss", first: 0, second: 0, third: 0 },
+  { name: "Nathan Gibboney", chessUsername: "nateguy321", first: 0, second: 0, third: 0 },
+  { name: "Harrison Rupp", chessUsername: "HarrisonRupp", first: 0, second: 0, third: 0 },
+  { name: "Ethan Struebel", chessUsername: "Ethanator-X", first: 0, second: 0, third: 0 },
+  { name: "Archer Webb", chessUsername: "archerwebb", first: 0, second: 0, third: 0 },
+  { name: "Player 2", chessUsername: "trdij", first: 0, second: 0, third: 0 },
+  { name: "Player 3", chessUsername: "mus_del", first: 0, second: 0, third: 0 },
+  { name: "Player 4", chessUsername: "C1ay_Bird", first: 0, second: 0, third: 0 },
+  { name: "Player 5", chessUsername: "cutydaeheecho", first: 0, second: 0, third: 0 }
 ];
 
-const tournamentData = [
-  { name: "Logan Amaya", first: 0, second: 0, third: 0 },
-  { name: "Jack Freeman", first: 0, second: 0, third: 0 },
-  { name: "Seamus Delaplane", first: 0, second: 0, third: 0 },
-  { name: "Clay Hill", first: 0, second: 0, third: 0 },
-  { name: "Daehee Cho", first: 0, second: 0, third: 0 },
-  { name: "Ryan Seeley", first: 0, second: 0, third: 0 },
-  { name: "Jonah Connor", first: 0, second: 0, third: 0 },
-  { name: "Lev Bryans", first: 0, second: 0, third: 0 },
-  { name: "Nathan Gibboney", first: 0, second: 0, third: 0 },
-  { name: "Harrison Rupp", first: 0, second: 0, third: 0 }
-];
+let updatedPlayers = [];
 
-function showTab(tabId) {
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.classList.remove("active");
-  });
+async function getChessStats(player) {
+  const username = player.chessUsername.toLowerCase();
+  const url = `https://api.chess.com/pub/player/${username}/stats`;
 
-  document.getElementById(tabId).classList.add("active");
-}
+  try {
+    const response = await fetch(url);
 
-async function getChessData() {
-  const playerData = [];
+    if (!response.ok) {
+      throw new Error("Player not found");
+    }
 
-  for (let player of players) {
-    try {
-      const response = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
-      const data = await response.json();
+    const data = await response.json();
 
-      const rapid = data.chess_rapid?.last?.rating || "N/A";
-      const blitz = data.chess_blitz?.last?.rating || "N/A";
-      const bullet = data.chess_bullet?.last?.rating || "N/A";
-
-      const rapidRecord = data.chess_rapid?.record || { win: 0, loss: 0, draw: 0 };
-      const blitzRecord = data.chess_blitz?.record || { win: 0, loss: 0, draw: 0 };
-      const bulletRecord = data.chess_bullet?.record || { win: 0, loss: 0, draw: 0 };
-
-      const wins = rapidRecord.win + blitzRecord.win + bulletRecord.win;
-      const losses = rapidRecord.loss + blitzRecord.loss + bulletRecord.loss;
-      const draws = rapidRecord.draw + blitzRecord.draw + bulletRecord.draw;
-
-      const totalGames = wins + losses + draws;
-      const winRate = totalGames > 0 ? ((wins / totalGames) * 100).toFixed(1) + "%" : "N/A";
-
-      playerData.push({
-        name: player.name,
-        username: player.username,
-        flag: player.flag,
-        rapid,
-        blitz,
-        bullet,
-        wins,
-        losses,
-        draws,
-        winRate
-      });
-
-    } catch (error) {
-      playerData.push({
-        name: player.name,
-        username: player.username,
-        flag: player.flag,
-        rapid: "Error",
-        blitz: "Error",
-        bullet: "Error",
+    if (!data.chess_rapid) {
+      return {
+        ...player,
+        elo: 0,
         wins: 0,
         losses: 0,
         draws: 0,
-        winRate: "Error"
-      });
+        status: "No rapid games"
+      };
     }
-  }
 
-  displayEloRankings(playerData);
-  displayRecordRankings(playerData);
+    return {
+      ...player,
+      elo: data.chess_rapid.last.rating,
+      wins: data.chess_rapid.record.win,
+      losses: data.chess_rapid.record.loss,
+      draws: data.chess_rapid.record.draw,
+      status: "Loaded"
+    };
+
+  } catch (error) {
+    return {
+      ...player,
+      elo: 0,
+      wins: 0,
+      losses: 0,
+      draws: 0,
+      status: "Error"
+    };
+  }
 }
 
-function displayEloRankings(data) {
+async function loadAllPlayers() {
+  updatedPlayers = await Promise.all(players.map(getChessStats));
+
+  fillEloTable();
+  fillRecordTable();
+  fillTournamentTable();
+  fillDashboard();
+
+  document.getElementById("loadingMessage").textContent =
+    "Stats loaded from Chess.com. Refresh the page to update rankings.";
+}
+
+function showTab(tabName, buttonClicked) {
+  const tabs = document.querySelectorAll(".tab-content");
+  const buttons = document.querySelectorAll(".tab-button");
+
+  tabs.forEach(tab => tab.classList.remove("active"));
+  buttons.forEach(button => button.classList.remove("active"));
+
+  document.getElementById(tabName).classList.add("active");
+  buttonClicked.classList.add("active");
+}
+
+function tournamentPoints(player) {
+  return (player.first * 5) + (player.second * 3) + player.third;
+}
+
+function winPercentage(player) {
+  const totalGames = player.wins + player.losses + player.draws;
+
+  if (totalGames === 0) {
+    return 0;
+  }
+
+  return Number(((player.wins / totalGames) * 100).toFixed(1));
+}
+
+function fillEloTable() {
   const table = document.getElementById("eloTable");
-
-  data.sort((a, b) => {
-    const ratingA = typeof a.rapid === "number" ? a.rapid : 0;
-    const ratingB = typeof b.rapid === "number" ? b.rapid : 0;
-    return ratingB - ratingA;
-  });
-
   table.innerHTML = "";
 
-  data.forEach((player, index) => {
+  const sortedPlayers = [...updatedPlayers].sort((a, b) => b.elo - a.elo);
+
+  sortedPlayers.forEach((player, index) => {
     table.innerHTML += `
-      <tr>
+      <tr class="${index === 0 ? "rank-one" : ""}">
         <td>${index + 1}</td>
-        <td>${player.flag}</td>
         <td>${player.name}</td>
-        <td>${player.username}</td>
-        <td>${player.rapid}</td>
-        <td>${player.blitz}</td>
-        <td>${player.bullet}</td>
+        <td>${player.chessUsername}</td>
+        <td>${player.elo === 0 ? player.status : player.elo}</td>
       </tr>
     `;
   });
 }
 
-function displayRecordRankings(data) {
+function fillRecordTable() {
   const table = document.getElementById("recordTable");
-
-  data.sort((a, b) => b.wins - a.wins);
-
   table.innerHTML = "";
 
-  data.forEach((player, index) => {
+  const sortedPlayers = [...updatedPlayers].sort((a, b) => winPercentage(b) - winPercentage(a));
+
+  sortedPlayers.forEach((player, index) => {
     table.innerHTML += `
-      <tr>
+      <tr class="${index === 0 ? "rank-one" : ""}">
         <td>${index + 1}</td>
-        <td>${player.flag}</td>
         <td>${player.name}</td>
         <td>${player.wins}</td>
         <td>${player.losses}</td>
         <td>${player.draws}</td>
-        <td>${player.winRate}</td>
+        <td>${winPercentage(player)}%</td>
       </tr>
     `;
   });
 }
 
-function displayTournamentRankings() {
+function fillTournamentTable() {
   const table = document.getElementById("tournamentTable");
-
-  tournamentData.forEach(player => {
-    player.points = player.first * 5 + player.second * 3 + player.third;
-  });
-
-  tournamentData.sort((a, b) => b.points - a.points);
-
   table.innerHTML = "";
 
-  tournamentData.forEach((player, index) => {
+  const sortedPlayers = [...players].sort((a, b) => tournamentPoints(b) - tournamentPoints(a));
+
+  sortedPlayers.forEach((player, index) => {
     table.innerHTML += `
-      <tr>
+      <tr class="${index === 0 ? "rank-one" : ""}">
         <td>${index + 1}</td>
         <td>${player.name}</td>
         <td>${player.first}</td>
         <td>${player.second}</td>
         <td>${player.third}</td>
-        <td>${player.points}</td>
+        <td>${tournamentPoints(player)}</td>
       </tr>
     `;
   });
 }
 
-getChessData();
-displayTournamentRankings();
+function fillDashboard() {
+  const topEloPlayer = [...updatedPlayers].sort((a, b) => b.elo - a.elo)[0];
+  const topRecordPlayer = [...updatedPlayers].sort((a, b) => winPercentage(b) - winPercentage(a))[0];
+  const topTournamentPlayer = [...players].sort((a, b) => tournamentPoints(b) - tournamentPoints(a))[0];
+
+  document.getElementById("topElo").textContent =
+    `${topEloPlayer.name} - ${topEloPlayer.elo === 0 ? topEloPlayer.status : topEloPlayer.elo + " Rapid ELO"}`;
+
+  document.getElementById("topRecord").textContent =
+    `${topRecordPlayer.name} - ${winPercentage(topRecordPlayer)}% Win Rate`;
+
+  document.getElementById("topTournament").textContent =
+    `${topTournamentPlayer.name} - ${tournamentPoints(topTournamentPlayer)} Points`;
+}
+
+loadAllPlayers();
